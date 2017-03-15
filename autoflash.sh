@@ -39,6 +39,22 @@ if [ $# -lt 3 ]
 then usage
 fi
 
+cat <<EOF
+----------------------------------------
+bc415 pin 16 goes to pin 10 on arduino
+bc415 pin 17 goes to pin 11 on arduino
+bc415 pin 18 goes to pin 12 on arduino
+bc415 pin 19 goes to pin 13 on arduino
+----------------------------------------
+bc415 pin 16 goes to pin DTR on FT232
+bc415 pin 17 goes to pin RI  on FT232
+bc415 pin 18 goes to pin RSD/DSR on FT232
+bc415 pin 19 goes to pin RTS on FT232
+----------------------------------------
+EOF
+
+read -n 1 -s -p "Press any key to continue"
+
 if [ "$1" == "arduino" ]
 then
     ./BlueFlashCmd.exe -TRANS "SPITRANS=LPT SPIPORT=$2" -DUMP $3;chkerr
