@@ -58,20 +58,20 @@ read -n 1 -s -p "Press any key to continue"
 if [ "$1" == "arduino" ]
 then
     ./BlueFlashCmd.exe -TRANS "SPITRANS=LPT SPIPORT=$2" -DUMP $3;chkerr
-    ./pscli.exe  -TRANS "SPITRANS=LPT SPIPORT=$2" query $3.psr dump.psq;chkerr
-    if [ "$4" != ""]
+    ./pscli.exe  -TRANS "SPITRANS=LPT SPIPORT=$2" query backup.psr dump.psq;chkerr
+    if [ "$4" != "" ]
     then
-	./BlueFlashCmd -TRANS "SPITRANS=LPT SPIPORT=$2" $4;chkerr
+	./BlueFlashCmd.exe -TRANS "SPITRANS=LPT SPIPORT=$2" $4;chkerr
 	./pscli.exe  -TRANS "SPITRANS=LPT SPIPORT=$2" merge backup.psr;chkerr
     fi
 elif [ "$1" == "ft232" ]
 then
-    ./BlueFlashCmd.exe -TRANS "SPITRANS=usb SPIPORT=$2" -DUMP $3;chkerr
-    ./pscli.exe  -TRANS "SPITRANS=usb SPIPORT=$2" query $3.psr dump.psq;chkerr
-    if [ "$4" != ""]
+    ./BlueFlashCmd.exe -TRANS "SPITRANS=usb SPIPORT=1" -DUMP $3;chkerr
+    ./pscli.exe  -TRANS "SPITRANS=usb SPIPORT=1" query backup.psr dump.psq;chkerr
+    if [ "$4" != "" ]
     then
-	./BlueFlashCmd -TRANS "SPITRANS=usb SPIPORT=$2" $4;chkerr
-	./pscli.exe  -TRANS "SPITRANS=usb SPIPORT=$2" merge backup.psr;chkerr
+	./BlueFlashCmd.exe -TRANS "SPITRANS=usb SPIPORT=1" $4;chkerr
+	./pscli.exe  -TRANS "SPITRANS=usb SPIPORT=1" merge backup.psr;chkerr
     fi
 
 else
